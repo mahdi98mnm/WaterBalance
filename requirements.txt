@@ -28,3 +28,6 @@ SQLAlchemy
 GeoAlchemy2
 persiantools
 pytest
+netCDF4
+xarray
+matplotlib
