@@ -1,5 +1,6 @@
 from typing import List, Dict, Tuple, Set, Optional, Union, Any, NoReturn
 import math
+import numpy as np
 import datetime
 from calendar import monthrange
 from .check import *
@@ -56,7 +57,7 @@ def slope_vapour_pressure_curve_with_maen_temperature(
     """
     
     
-    return 4098 * (0.6108 * math.exp((17.27 * tmean) / (tmean + 237.3))) / ((tmean + 237.3)**2)
+    return 4098 * (0.6108 * np.exp((17.27 * tmean) / (tmean + 237.3))) / ((tmean + 237.3)**2)
 
 
 
@@ -124,7 +125,7 @@ def inverse_relative_distance_earth_sun(
         inverse relative distance earth sun in Radian
     """
         
-    return 1 + (0.033 * math.cos((2 * math.pi * julian_date)/365))
+    return 1 + (0.033 * np.cos((2 * np.pi * julian_date)/365))
 
 
 
@@ -147,7 +148,7 @@ def solar_declination(
         solar_declination in Radian
     """
         
-    return 0.409 * math.sin(((2 * math.pi * julian_date) / 365) - 1.39)
+    return 0.409 * np.sin(((2 * np.pi * julian_date) / 365) - 1.39)
 
 
 
@@ -173,7 +174,7 @@ def sunset_hour_angle(
         sunset hour angle in Radian
     """
         
-    return math.acos(-math.tan(latitude) * math.tan(solar_declination))
+    return np.arccos(-np.tan(latitude) * np.tan(solar_declination))
 
 
 
@@ -195,7 +196,7 @@ def saturation_vapour_pressure_with_temperature(
         Saturation Vapour Pressure in Kilo pascal
     """
     
-    return 0.6108 * math.exp((17.27 * temperature) / (temperature + 237.3))
+    return 0.6108 * np.exp((17.27 * temperature) / (temperature + 237.3))
 
 
 
@@ -245,7 +246,7 @@ def maximum_possible_sunshine_duration_in_a_day(
         maximum possible sunshine duration in a day in hours
     """
         
-    return (24 / math.pi) * sunset_hour_angle
+    return (24 / np.pi) * sunset_hour_angle
 
 
 
@@ -299,11 +300,11 @@ def extraterrestrial_radiation(
             extraterrestrial radiation in MJ/m**2/day
     """
     
-    temp_1 = ((24 * 60 )/ math.pi) * SOLAR_CONSTANT * inverse_relative_distance_earth_sun
+    temp_1 = ((24 * 60 )/ np.pi) * SOLAR_CONSTANT * inverse_relative_distance_earth_sun
 
-    temp_2 = sunset_hour_angle * math.sin(latitude) * math.sin(solar_declination)
+    temp_2 = sunset_hour_angle * np.sin(latitude) * np.sin(solar_declination)
 
-    temp_3 = math.cos(latitude)* math.cos(solar_declination) * math.sin(sunset_hour_angle)
+    temp_3 = np.cos(latitude)* np.cos(solar_declination) * np.sin(sunset_hour_angle)
 
     return temp_1 * (temp_2 + temp_3)
 
@@ -415,7 +416,7 @@ class SolarOrShortwaveRadiation  :
         temp_1 = extraterrestrial_radiation
 
 
-        return Adjustment_coefficient_or_K_RS * math.sqrt(tmax - tmin) * temp_1
+        return Adjustment_coefficient_or_K_RS * np.sqrt(tmax - tmin) * temp_1
 
 
 
@@ -687,7 +688,7 @@ def net_longwave_radiation(
     """
 
     temp_1 = STEFAN_BOLTZMANN_CONSTANT * (((tmax_kelvin**4) + (tmin_kelvin**4)) / 2 )
-    temp_2 = 0.34 - (0.14 * math.sqrt(actual_vapour_pressure))
+    temp_2 = 0.34 - (0.14 * np.sqrt(actual_vapour_pressure))
     temp_3 = (1.35 * (solar_or_shortwave_radiation / clear_sky_solar_or_clear_sky_shortwave_radiation)) - 0.35
 
     R_nl = temp_1 * temp_2 * temp_3
@@ -891,7 +892,7 @@ def wind_speed_at_2m_above_ground_surface(
         wind speed at 2m above ground surface in meter / second
     """
         
-    return measured_wind_speed * (4.87 / (math.log((67.8 *altitude_at_which_wind_speed_is_measured) - 5.42)))
+    return measured_wind_speed * (4.87 / (np.log((67.8 *altitude_at_which_wind_speed_is_measured) - 5.42)))
 
 
 
