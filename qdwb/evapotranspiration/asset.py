@@ -223,7 +223,7 @@ def total_saturation_vapour_pressure(
     """
     
 
-    return (Saturated_vapor_pressure_at_maximum_temperature + Saturated_vapor_pressure_at_minimum_temperature) / 2
+    return (saturated_vapor_pressure_at_maximum_temperature + saturated_vapor_pressure_at_minimum_temperature) / 2
 
 
 
@@ -1004,10 +1004,8 @@ def moisture_reduction_function(
 
 
 def ratio_of_actual_evaporable_water_to_total_evaporable_water(
-    is_in_fisrt_step : bool,
     available_water : float,
-    available_evaporable_water : float,
-    initial_available_evaporable_water : float = None
+    available_evaporable_water : float
 ) -> float:
     
     """
@@ -1029,12 +1027,10 @@ def ratio_of_actual_evaporable_water_to_total_evaporable_water(
     ratio_of_actual_evaporable_water_to_total_evaporable_water : float
         ratio_of_actual_evaporable_water_to_total_evaporable_water in No units
     """
-    if Is_in_fisrt_step is True : 
-        ae = initial_available_evaporable_water
-    else:
-        ae = available_evaporable_water
-        
     
+    
+    ae = available_evaporable_water
+        
     aw = available_water
 
     return ae / aw

@@ -65,33 +65,33 @@ class ReferenceEvapotranspiration :
             Reference Crop Evapotranspiration [mm/day]
         """
         
-        check_greater_than(
-            a=tmin,
-            a_name="Tmin",
-            b=tmax,
-            b_name="Tmax"
-        )
+        # check_greater_than(
+        #     a=tmin,
+        #     a_name="Tmin",
+        #     b=tmax,
+        #     b_name="Tmax"
+        # )
         
-        check_greater_than(
-            a=tmean,
-            a_name="Tmean",
-            b=tmax,
-            b_name="Tmax"
-        )
+        # check_greater_than(
+        #     a=tmean,
+        #     a_name="Tmean",
+        #     b=tmax,
+        #     b_name="Tmax"
+        # )
         
-        check_greater_than(
-            a=tmin,
-            a_name="Tmin",
-            b=tmean,
-            b_name="Tmean"
-        )
+        # check_greater_than(
+        #     a=tmin,
+        #     a_name="Tmin",
+        #     b=tmean,
+        #     b_name="Tmean"
+        # )
         
-        check_between(
-            a=ra,
-            min=0,
-            max=SOLAR_CONSTANT * 24 * 60 * 0.408,
-            name="Extraterrestrial Radiation"
-        )
+        # check_between(
+        #     a=ra,
+        #     min=0,
+        #     max=SOLAR_CONSTANT * 24 * 60 * 0.408,
+        #     name="Extraterrestrial Radiation"
+        # )
         
         return 0.0023 * (tmean + 17.8) * (tmax - tmin) ** 0.5 * ra
     

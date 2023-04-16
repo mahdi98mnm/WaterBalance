@@ -1,6 +1,7 @@
 from typing import List, Dict, Tuple, Set, Optional, Union, Any, NoReturn
-from check import *
-from asset import *
+from .check import *
+from .asset import *
+import numpy as np
 
 class PrimarySurfaceFlow :
 
