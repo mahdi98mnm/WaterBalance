@@ -5,29 +5,29 @@ openpyxl
 xlrd
 xlsxwriter
 plotly
-dash
-dash-bootstrap-components
-dash-extensions
-dash-mantine-components
-dash-datatables
+# dash
+# dash-bootstrap-components
+# dash-extensions
+# dash-mantine-components
+# dash-datatables
 geopandas
 shapely
 rtree
 pyproj
-Flask
-Flask-SQLAlchemy
-Flask-Migrate
-WTForms
-Flask-WTF
-flask-bcrypt
-flask-login
-email_validator
-psycopg2
-psycopg2-binary
-SQLAlchemy
-GeoAlchemy2
-persiantools
+# Flask
+# Flask-SQLAlchemy
+# Flask-Migrate
+# WTForms
+# Flask-WTF
+# flask-bcrypt
+# flask-login
+# email_validator
+# psycopg2
+# psycopg2-binary
+# SQLAlchemy
+# GeoAlchemy2
+# persiantools
 pytest
 netCDF4
-xarray
-matplotlib
+xarray==0.17.0
+rioxarray==0.14.1
