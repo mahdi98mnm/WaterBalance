@@ -1,6 +1,5 @@
 
-from constant import *
-
+from .constant import *
 
 class SoilContent :
 
@@ -46,7 +45,7 @@ class SoilContent :
         self.infiltration_from_evaporation_to_transpiration_layer = infiltration_from_evaporation_to_transpiration_layer
         self.infiltration_from_transpiration_to_transition_layer = infiltration_from_transpiration_to_transition_layer
         self.transpiration = transpiration
-        self.upward_flux_from_transition_to_transpiration_layer
+        self.upward_flux_from_transition_to_transpiration_layer = upward_flux_from_transition_to_transpiration_layer
         self.upward_flux_from_transpiration_to_evaporation_layer = upward_flux_from_transpiration_to_evaporation_layer
         self.root_depth = root_depth
         self.MAD = MAD
