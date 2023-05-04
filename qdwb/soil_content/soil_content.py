@@ -224,7 +224,7 @@ class SoilContent :
         if temp_1 <= temp_3:
             temp_1 = temp_3
             evaporation = soil_water_content_of_evaporation_layer_at_previous_step - temp_3
-            return temp_1
+            
 
         elif temp_1 >= temp_2:
             if coverd is True:
@@ -234,10 +234,10 @@ class SoilContent :
                 infiltration_to_transition_layer = temp_1 - temp_2
                 temp_1 = temp_2
 
-            return temp_1
+            
 
         else:
-            return temp_1
+            return temp_1, evaporation, infiltration_to_transpiration_layer, infiltration_to_transition_layer
     
 
     def transpiration_layer(
@@ -319,24 +319,24 @@ class SoilContent :
                 # transpiration = (soil_water_content_of_transpiration_layer_at_previous_step - upward_flux_from_transpiration_to_evaporation_layer + upward_flux_from_transition_to_transpiration_layer)
                 # in porside she ke kodom dorste - faghat toye manfi tafafod dare
 
-                return temp_1
+                
 
             elif temp_1 >= temp_2:
                 infiltration_from_transpiration_to_transition_layer = temp_1 - temp_2
                 temp_1 = temp_2
 
-                return temp_1
+                
 
             elif temp_3 < temp_1 < temp_2:
                 temp_4 = (temp_2 - temp_3) * MAD
                 if temp_1 >= temp_4:
-
-                    return temp_1
+                    temp_1 = temp_1
 
                 else:
                     irrigation_requirement = stress_coefficient * (temp_2 - temp_1)
                     temp_1 = temp_2
-                    return temp_1
+            
+            return temp_1, transpiration, infiltration_from_transpiration_to_transition_layer, irrigation_requirement
     
 
 
@@ -403,13 +403,15 @@ class SoilContent :
                 upward_flux_from_transition_to_transpiration_layer = upward_flux_from_transition_to_transpiration_layer - (temp_3 - temp_1) 
                 temp_1 = temp_3
 
-                return temp_1
+                
 
             elif temp_1 > temp_2:
                 deep_percolation = (temp_1 - temp_2)
                 temp_1 = temp_2
 
-                return temp_1
+                
 
             else:
-                return temp_1
+                temp_1 = temp_1
+            
+            return temp_1, upward_flux_from_transition_to_transpiration_layer, deep_percolation
